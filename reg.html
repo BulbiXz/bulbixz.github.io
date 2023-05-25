@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Городской портал | HappyCity</title>
+        <link rel="shortcut icon" href="" type="image/x-icon">
+        <link href="styles/style2.css" rel="stylesheet" type="text/css">
+        <link href="styles/style3.css" rel="stylesheet" type="text/css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+        <script src="script/js.js" defer></script>
+        <script src="script/join.js" defer></script>
+
+        
+    </head>
+    <body>
+        <div class="reg">
+            <div class="regheader"><h1 class="regtxt">Регистрация</h1></div>
+            <div class="polya">
+                <div class="pole"><p class="info">ФИО:</p><input id="fio"></div>
+                <div class="pole"><p class="info">Логин:</p><input id="login"></div>
+                <div class="pole"><p class="info">Email:</p><input id="email"></div>
+                <div class="pole"><p class="info">Пароль:</p>
+                <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов" required></div>
+                <div class="pole"><p class="info" style="padding-top: 5px;">Повторите<br>пароль:</p><input style="margin-top: -56px;"></div>
+                <div id="message">
+                    <h3>Пароль должен содержать следующее:</h3>
+                    <p id="letter" class="invalid"><b>нижний регистр</b> буква</p>
+                    <p id="capital" class="invalid"><b>заглавная (прописная)</b> буква</p>
+                    <p id="number" class="invalid"><b>число</b></p>
+                    <p id="length" class="invalid">Минимум<b> 8 символов</b></p>
+                  </div>
+                  <script>
+                  var myInput = document.getElementById("psw");
+                  var letter = document.getElementById("letter");
+                  var capital = document.getElementById("capital");
+                  var number = document.getElementById("number");
+                  var length = document.getElementById("length");
+                  
+                  // When the user clicks on the password field, show the message box
+                  myInput.onfocus = function() {
+                    document.getElementById("message").style.display = "block";
+                  }
+                  
+                  // When the user clicks outside of the password field, hide the message box
+                  myInput.onblur = function() {
+                    document.getElementById("message").style.display = "none";
+                  }
+                  
+                  // When the user starts to type something inside the password field
+                  myInput.onkeyup = function() {
+                    // Validate lowercase letters
+                    var lowerCaseLetters = /[a-z]/g;
+                    if(myInput.value.match(lowerCaseLetters)) {
+                      letter.classList.remove("invalid");
+                      letter.classList.add("valid");
+                    } else {
+                      letter.classList.remove("valid");
+                      letter.classList.add("invalid");
+                  }
+                  
+                    // Validate capital letters
+                    var upperCaseLetters = /[A-Z]/g;
+                    if(myInput.value.match(upperCaseLetters)) {
+                      capital.classList.remove("invalid");
+                      capital.classList.add("valid");
+                    } else {
+                      capital.classList.remove("valid");
+                      capital.classList.add("invalid");
+                    }
+                  
+                    // Validate numbers
+                    var numbers = /[0-9]/g;
+                    if(myInput.value.match(numbers)) {
+                      number.classList.remove("invalid");
+                      number.classList.add("valid");
+                    } else {
+                      number.classList.remove("valid");
+                      number.classList.add("invalid");
+                    }
+                  
+                    // Validate length
+                    if(myInput.value.length >= 8) {
+                      length.classList.remove("invalid");
+                      length.classList.add("valid");
+                    } else {
+                      length.classList.remove("valid");
+                      length.classList.add("invalid");
+                    }
+                  }
+                  </script>
+                <div class="pole" style="display: flex;"><input class="sogl" type="checkbox"><a href="#" class="info" style="font-size: 18px; margin-left: -9px; margin-top: -10px;">Согласие на обработку данных</a></div>
+                <div class="button"><a href="main.html" id="registration" style="display: flex; margin-top: 10px; justify-content: center;">Зарегистрироваться</a></div>
+            </div>
+        </div>
+    </body>
+</html>
